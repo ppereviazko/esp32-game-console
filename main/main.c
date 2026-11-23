@@ -1,5 +1,7 @@
 #include "st7789.h"
 #include "cats565.h"
+#include "arkanoid.h"
+#include "gamemenu.h"
 #include "snake.h"
 #include "buzzer.h"
 
@@ -22,5 +24,17 @@ void app_main(void)
         buzzer_sfx_game_start();
     }
 
-    snake_run();
+    for (;;) {
+        game_id_t choice = gamemenu_pick();
+        switch (choice) {
+        case GAME_SNAKE:
+            snake_run();
+            break;
+        case GAME_ARKANOID:
+            arkanoid_run();
+            break;
+        default:
+            break;
+        }
+    }
 }
