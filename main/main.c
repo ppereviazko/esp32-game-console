@@ -3,6 +3,7 @@
 #include "arkanoid.h"
 #include "gamemenu.h"
 #include "snake.h"
+#include "pacman.h"
 #include "buzzer.h"
 
 #include "freertos/FreeRTOS.h"
@@ -32,6 +33,9 @@ void app_main(void)
             break;
         case GAME_ARKANOID:
             arkanoid_run();
+            break;
+        case GAME_PACMAN:
+            pacman_run();
             break;
         default:
             break;

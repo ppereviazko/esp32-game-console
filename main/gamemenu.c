@@ -23,11 +23,13 @@
 #define COLOR_SNAKE 0x07E0
 #define COLOR_FOOD 0xFFE0
 #define COLOR_PADDLE 0xFFFF
+#define COLOR_PAC 0xFFE0
+#define COLOR_GHOST 0xF800
 
 static const bool k_playable[GAME_MENU_SLOTS] = {
     true,
     true,
-    false,
+    true,
     false,
     false,
     false,
@@ -118,6 +120,17 @@ static void draw_icon_snake(int ox, int oy)
     st7789_fill_box(base_x + cell, base_y + cell, cell - 1, cell - 1, COLOR_FOOD);
 }
 
+static void draw_icon_pacman(int ox, int oy)
+{
+    int cx = ox + SLOT_W / 2;
+    int cy = oy + SLOT_H / 2 - 4;
+    st7789_fill_box(cx - 10, cy - 10, 20, 20, COLOR_PAC);
+    st7789_fill_box(cx + 2, cy - 6, 10, 12, COLOR_SLOT);
+    st7789_fill_box(cx - 5, cy - 18, 10, 10, COLOR_GHOST);
+    st7789_fill_box(cx - 3, cy - 15, 2, 2, COLOR_BG);
+    st7789_fill_box(cx + 1, cy - 15, 2, 2, COLOR_BG);
+}
+
 static void draw_icon_arkanoid(int ox, int oy)
 {
     const uint16_t colors[] = {0xC618, 0xFD20, 0xF800, 0xFFE0};
@@ -158,6 +171,8 @@ static void draw_slot_frame(int index, bool selected)
         draw_icon_snake(x, y);
     } else if (index == GAME_ARKANOID) {
         draw_icon_arkanoid(x, y);
+    } else if (index == GAME_PACMAN) {
+        draw_icon_pacman(x, y);
     }
 }
 

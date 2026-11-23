@@ -7,6 +7,7 @@
 typedef enum {
     GAME_SNAKE = 0,
     GAME_ARKANOID = 1,
+    GAME_PACMAN = 2,
 } game_id_t;
 
 /* Blocks until the player confirms an available game. */
